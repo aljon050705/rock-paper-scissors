@@ -1,0 +1,25 @@
+* {
+    font-family: inherit;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: rgb(49, 49, 49);
+}
+
+p {
+    color: white;
+}
+
+.button-play {
+    font-size: 30px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    /*
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    */
+    cursor:pointer;
+}
