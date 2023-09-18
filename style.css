@@ -1,6 +1,8 @@
 * {
     font-family: inherit;
     font-family: Helvetica, Arial, sans-serif;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -11,15 +13,100 @@ p {
     color: white;
 }
 
-.button-play {
-    font-size: 30px;
-    padding: 10px 20px;
-    border-radius: 20px;
-    /*
+.game {
+    padding: 1vw;
+    background-color: rgb(30,30,30);
+    width: 50%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    */
+}
+
+.buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
     cursor:pointer;
+}
+
+.buttons button {
+    text-align: center;
+    width: 10vw;
+    height: 10vw;
+    font-size: 5vw;
+    border-radius: 5px;
+    background-color: rgb(170, 170, 170);
+    box-shadow: 0.2vw 0.2vw 1vw black;
+    transition: transform 0.5s, background-color 0.3s;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    transform: scale(1.1);
+    background-color: white;
+}
+
+.players {
+    font-size: 1.5vw;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2vw;
+}
+
+.players h2{
+    font-size: 2vw;
+    text-align: center;
+    color: white;
+}
+
+.player-pfp p, .computer-pfp p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(70, 70, 70);
+    width: 8vw;
+    height: 8vw;
+    margin: 0 1vw;
+    font-size: 4vw;
+}
+
+.player-score, .computer-score {
+    margin: 2.5vw 0 0;
+    display: flex;
+    background-color: rgb(70, 70, 70);
+    align-self:flex-start;
+}
+
+.player-score div, .computer-score div {
+    margin: 0.2vw;
+    border: 0.2vw solid white;
+    border-radius: 50%;
+    width: 1.3vw;
+    height: 1.3vw;
+    background-color: rgb(60,60,60);
+    transition: all 0.5s;
+}
+
+.result {
+    text-align: center;
+    width: 10vw;
+}
+.DOMresult {
+    margin: 2vw 0 0;
+}
+
+.player-score .score-1{
+    background-color: red;
+}
+
+.red {
+    background-color: red!important;
+}
+
+.green {
+    background-color: green!important;
 }

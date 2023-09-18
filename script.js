@@ -1,15 +1,38 @@
-const buttonPlay = document.querySelector('.button-play');
-const playerMoveSelector = document.getElementById('playerMove')
-const resultHook = document.querySelector('.result')
+/*Pseudocode
+1. Button gets clicked
+2. Get result
+3. Add red circle to loser, Add green circle to winner
+*/
+
+
+const resultHook = document.querySelector('.DOMresult')
 const scoreHook = document.querySelector('.score')
 
 
-console.log(playerMoveSelector.value)
-
 let score = {
-    wins: 0,
-    losses: 0,
-    draws: 0,
+    playerWins: 0,
+    playerLosses: 0,
+    computerWins: 0,
+    computerLosses: 0,
+    gameTies: 0,
+}
+
+let updateScoreCircles = (target,result) => {
+    if (target == 'player') {
+        let playerScore = document.querySelector(`.player-score-${+score.playerWins + +score.playerLosses}`);
+        if (result == 'win') {
+            playerScore.classList.add('green');
+        } else {
+            playerScore.classList.add('red');
+        }
+    } else if (target == 'computer') {
+        let computerScore = document.querySelector(`.computer-score-${+score.computerWins + +score.computerLosses}`);
+        if (result == 'win') {
+            computerScore.classList.add('green');
+        } else {
+            computerScore.classList.add('red');
+        }
+    }
 }
 
 let interpretMove = (move) => {
@@ -38,25 +61,55 @@ let getComputerChoice = () => {
     }
 }
 
-let getResults = () => {
-    let playerMove = +playerMoveSelector.value;
+let getResults = (playerMove) => {
     let computerMove = getComputerChoice();
     let result = "";
     console.log(interpretMove(playerMove) + " vs " + interpretMove(computerMove))
     if (playerMove === computerMove) {
-        score.draws++;
+        score.gameTies++;
         result = 'Tie';
     } else if ((playerMove) % 3 + 1 === computerMove) {
-        score.losses++
+        score.playerLosses++
+        score.computerWins++
+        updateScoreCircles('player','lose')
+        updateScoreCircles('computer','win')
         result = 'Computer Wins';
     } else {
-        score.wins++
+        score.computerLosses++
+        score.playerWins++
+        updateScoreCircles('computer','lose')
+        updateScoreCircles('player','win')
         result = 'Player Wins';
     }
-    resultHook.textContent = `${interpretMove(playerMove)} vs ${interpretMove(computerMove)} ,${result}`;
-    scoreHook.textContent = `Wins: ${score.wins}, Losses: ${score.losses}, Draws: ${score.draws}`
+    console.log(result)
+    resultHook.textContent = `${result}`;
     return result;
 }
 
 
-buttonPlay.addEventListener("click", getResults)
+//buttonPlay.addEventListener("click", getResults)
+//Event Listeners
+const buttonRock = document.querySelector('.rock');
+const buttonPaper = document.querySelector('.paper');
+const buttonScissors = document.querySelector('.scissors');
+
+buttonRock.addEventListener('click', () => {
+    getResults(1)
+    //buttonRock.classList.toggle('red');
+    console.log(buttonRock);
+    }
+ );
+
+ buttonPaper.addEventListener('click', () => {
+    getResults(2)
+    //buttonPaper.classList.toggle('red');
+    console.log(buttonPaper);
+    }
+ );
+
+ buttonScissors.addEventListener('click', () => {
+    getResults(3)
+    //buttonScissors.classList.toggle('red');
+    console.log(buttonScissors);
+    }
+ );
