@@ -17,21 +17,13 @@ let score = {
     gameTies: 0,
 }
 
-let updateScoreCircles = (target,result) => {
+let updateScoreCircles = (target) => {
     if (target == 'player') {
-        let playerScore = document.querySelector(`.player-score-${+score.playerWins + +score.playerLosses}`);
-        if (result == 'win') {
-            playerScore.classList.add('green');
-        } else {
-            playerScore.classList.add('red');
-        }
+        let playerScore = document.querySelector(`.player-score-${+score.playerWins}`);
+        playerScore.classList.add('green');
     } else if (target == 'computer') {
-        let computerScore = document.querySelector(`.computer-score-${+score.computerWins + +score.computerLosses}`);
-        if (result == 'win') {
-            computerScore.classList.add('green');
-        } else {
-            computerScore.classList.add('red');
-        }
+        let computerScore = document.querySelector(`.computer-score-${+score.computerWins}`);
+        computerScore.classList.add('green');
     }
 }
 
@@ -69,16 +61,12 @@ let getResults = (playerMove) => {
         score.gameTies++;
         result = 'Tie';
     } else if ((playerMove) % 3 + 1 === computerMove) {
-        score.playerLosses++
-        score.computerWins++
-        updateScoreCircles('player','lose')
-        updateScoreCircles('computer','win')
+        score.computerWins++;
+        updateScoreCircles('computer');
         result = 'Computer Wins';
     } else {
-        score.computerLosses++
-        score.playerWins++
-        updateScoreCircles('computer','lose')
-        updateScoreCircles('player','win')
+        score.playerWins++;
+        updateScoreCircles('player');
         result = 'Player Wins';
     }
     console.log(result)
